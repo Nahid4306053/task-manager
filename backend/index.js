@@ -27,9 +27,9 @@ app.use("/tasks",routers)
 // default erro handeler  
 app.use((err, req, res, next) => {
     if (err.statusCode) {
-        res.status(err.statusCode).send(err.message);
+        res.status(err.statusCode).json({messageCode:"Failed",message: err.message ?? "There is server side error"});
     } else {
-        res.status(500).json({message: err.message ?? "There is server side error"});
+        res.status(500).json({messageCode:"Failed",message: err.message ?? "There is server side error"});
     }
 });
 
